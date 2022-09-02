@@ -3,7 +3,7 @@ import Config
 # Configure your database
 config :pets, Pets.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "qoadmin",
   hostname: "localhost",
   database: "pets_dev",
   stacktrace: true,
