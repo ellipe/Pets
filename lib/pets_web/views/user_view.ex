@@ -14,7 +14,7 @@ defmodule PetsWeb.UserView do
     %{
       id: user.id,
       email: user.email,
-      encrypted_password: user.encrypted_password
+      password: user.password
     }
   end
 end

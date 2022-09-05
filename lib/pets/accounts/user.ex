@@ -4,8 +4,7 @@ defmodule Pets.Accounts.User do
 
   schema "users" do
     field :email, :string
-    field :encrypted_password, :string
-    field :password, :string, virtual: true
+    field :password, :string
 
     timestamps()
   end
@@ -24,7 +23,7 @@ defmodule Pets.Accounts.User do
   defp put_hashed_password(changeset) do
     case changeset do
       %Ecto.Changeset{valid?: true, changes: %{password: password}} ->
-        put_change(changeset, :encrypted_password, Comeonin.Bcrypt.hashpwsalt(password))
+        put_change(changeset, :password, Comeonin.Bcrypt.hashpwsalt(password))
 
       _ ->
         changeset
