@@ -9,6 +9,8 @@ defmodule PetsWeb.Router do
     pipe_through :api
 
     resources "/pets", PetController, except: [:new, :edit]
+    post "/users/signup", UserController, :create
+    post "/users/signin", UserController, :signin
   end
 
   # Enables LiveDashboard only for development
