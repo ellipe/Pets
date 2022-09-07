@@ -129,4 +129,64 @@ defmodule Pets.CompanionsTest do
       assert %Ecto.Changeset{} = Companions.change_vaccine(vaccine)
     end
   end
+
+  describe "medications" do
+    alias Pets.Companions.Medication
+
+    import Pets.CompanionsFixtures
+
+    @invalid_attrs %{dose: nil, name: nil, schedule: nil, unit: nil}
+
+    test "list_medications/0 returns all medications" do
+      medication = medication_fixture()
+      assert Companions.list_medications() == [medication]
+    end
+
+    test "get_medication!/1 returns the medication with given id" do
+      medication = medication_fixture()
+      assert Companions.get_medication!(medication.id) == medication
+    end
+
+    test "create_medication/1 with valid data creates a medication" do
+      valid_attrs = %{dose: 120.5, name: "some name", schedule: %{}, unit: "some unit"}
+
+      assert {:ok, %Medication{} = medication} = Companions.create_medication(valid_attrs)
+      assert medication.dose == 120.5
+      assert medication.name == "some name"
+      assert medication.schedule == %{}
+      assert medication.unit == "some unit"
+    end
+
+    test "create_medication/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Companions.create_medication(@invalid_attrs)
+    end
+
+    test "update_medication/2 with valid data updates the medication" do
+      medication = medication_fixture()
+      update_attrs = %{dose: 456.7, name: "some updated name", schedule: %{}, unit: "some updated unit"}
+
+      assert {:ok, %Medication{} = medication} = Companions.update_medication(medication, update_attrs)
+      assert medication.dose == 456.7
+      assert medication.name == "some updated name"
+      assert medication.schedule == %{}
+      assert medication.unit == "some updated unit"
+    end
+
+    test "update_medication/2 with invalid data returns error changeset" do
+      medication = medication_fixture()
+      assert {:error, %Ecto.Changeset{}} = Companions.update_medication(medication, @invalid_attrs)
+      assert medication == Companions.get_medication!(medication.id)
+    end
+
+    test "delete_medication/1 deletes the medication" do
+      medication = medication_fixture()
+      assert {:ok, %Medication{}} = Companions.delete_medication(medication)
+      assert_raise Ecto.NoResultsError, fn -> Companions.get_medication!(medication.id) end
+    end
+
+    test "change_medication/1 returns a medication changeset" do
+      medication = medication_fixture()
+      assert %Ecto.Changeset{} = Companions.change_medication(medication)
+    end
+  end
 end

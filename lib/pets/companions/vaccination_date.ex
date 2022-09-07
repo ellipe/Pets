@@ -4,6 +4,7 @@ defmodule Pets.Companions.Vaccine.VaccinationDate do
 
   alias Pets.Companions.Vaccine.VaccinationDate
 
+  @derive {Jason.Encoder, only: [:immunization_date, :veterinarian, :status]}
   embedded_schema do
     field :immunization_date, :date
     field :veterinarian, :string
