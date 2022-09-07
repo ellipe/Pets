@@ -1,12 +1,12 @@
-defmodule Pets.CompanionTest do
+defmodule Pets.CompanionsTest do
   use Pets.DataCase
 
-  alias Pets.Companion
+  alias Pets.Companions
 
   describe "pets" do
-    alias Pets.Companion.Pet
+    alias Pets.Companions.Pet
 
-    import Pets.CompanionFixtures
+    import Pets.CompanionsFixtures
 
     @invalid_attrs %{birthdate: nil, breed: nil, gender: nil, name: nil}
 
@@ -21,7 +21,12 @@ defmodule Pets.CompanionTest do
     end
 
     test "create_pet/1 with valid data creates a pet" do
-      valid_attrs = %{birthdate: ~D[2022-09-01], breed: "some breed", gender: "some gender", name: "some name"}
+      valid_attrs = %{
+        birthdate: ~D[2022-09-01],
+        breed: "some breed",
+        gender: "some gender",
+        name: "some name"
+      }
 
       assert {:ok, %Pet{} = pet} = Companion.create_pet(valid_attrs)
       assert pet.birthdate == ~D[2022-09-01]
@@ -36,7 +41,13 @@ defmodule Pets.CompanionTest do
 
     test "update_pet/2 with valid data updates the pet" do
       pet = pet_fixture()
-      update_attrs = %{birthdate: ~D[2022-09-02], breed: "some updated breed", gender: "some updated gender", name: "some updated name"}
+
+      update_attrs = %{
+        birthdate: ~D[2022-09-02],
+        breed: "some updated breed",
+        gender: "some updated gender",
+        name: "some updated name"
+      }
 
       assert {:ok, %Pet{} = pet} = Companion.update_pet(pet, update_attrs)
       assert pet.birthdate == ~D[2022-09-02]

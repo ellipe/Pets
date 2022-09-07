@@ -11,7 +11,7 @@
 # and so on) as they will fail if something goes wrong.
 
 alias Pets.Repo
-alias Pets.Companion.Pet
+alias Pets.Companions.Pet
 
 Repo.insert!(%Pet{name: "Chiquita", breed: "Pinchee", gender: "Female", birthdate: ~D[2003-05-01]})
 

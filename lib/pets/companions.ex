@@ -1,4 +1,4 @@
-defmodule Pets.Companion do
+defmodule Pets.Companions do
   @moduledoc """
   The Companion context.
   """
@@ -6,7 +6,7 @@ defmodule Pets.Companion do
   import Ecto.Query, warn: false
   alias Pets.Repo
 
-  alias Pets.Companion.Pet
+  alias Pets.Companions.Pet
 
   @doc """
   Returns the list of pets.

@@ -1,9 +1,9 @@
 defmodule PetsWeb.PetControllerTest do
   use PetsWeb.ConnCase
 
-  import Pets.CompanionFixtures
+  import Pets.CompanionsFixtures
 
-  alias Pets.Companion.Pet
+  alias Pets.Companions.Pet
 
   @create_attrs %{
     birthdate: ~D[2022-09-01],

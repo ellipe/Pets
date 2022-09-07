@@ -1,4 +1,4 @@
-defmodule Pets.Companion.Pet do
+defmodule Pets.Companions.Pet do
   use Ecto.Schema
   import Ecto.Changeset
 

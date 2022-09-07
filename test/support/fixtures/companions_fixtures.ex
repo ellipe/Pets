@@ -1,7 +1,7 @@
-defmodule Pets.CompanionFixtures do
+defmodule Pets.CompanionsFixtures do
   @moduledoc """
   This module defines test helpers for creating
-  entities via the `Pets.Companion` context.
+  entities via the `Pets.Companions` context.
   """
 
   @doc """
@@ -16,7 +16,7 @@ defmodule Pets.CompanionFixtures do
         gender: "some gender",
         name: "some name"
       })
-      |> Pets.Companion.create_pet()
+      |> Pets.Companions.create_pet()
 
     pet
   end
