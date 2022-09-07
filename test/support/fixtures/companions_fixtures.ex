@@ -20,4 +20,19 @@ defmodule Pets.CompanionsFixtures do
 
     pet
   end
+
+  @doc """
+  Generate a vaccine.
+  """
+  def vaccine_fixture(attrs \\ %{}) do
+    {:ok, vaccine} =
+      attrs
+      |> Enum.into(%{
+        name: "some name",
+        vaccination_dates: %{}
+      })
+      |> Pets.Companions.create_vaccine()
+
+    vaccine
+  end
 end
