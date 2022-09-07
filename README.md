@@ -1,5 +1,15 @@
 # Pets
 
+### Models
+#### Pet
+```
+id: number
+name: string
+breed: string
+birthdate: date
+gender: string
+```
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`

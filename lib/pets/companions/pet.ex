@@ -5,7 +5,7 @@ defmodule Pets.Companions.Pet do
   schema "pets" do
     field :birthdate, :date
     field :breed, :string
-    field :gender, :string
+    field :gender, Ecto.Enum, values: [:Female, :Male]
     field :name, :string
 
     timestamps()

@@ -12,9 +12,6 @@ defmodule PetsWeb.PetController do
   end
 
   def create(conn, %{"pet" => pet_params}) do
-    IO.puts("Controllllerrrr.......")
-    IO.inspect(pet_params)
-
     with {:ok, %Pet{} = pet} <- Companions.create_pet(pet_params) do
       conn
       |> put_status(:created)
