@@ -189,4 +189,62 @@ defmodule Pets.CompanionsTest do
       assert %Ecto.Changeset{} = Companions.change_medication(medication)
     end
   end
+
+  describe "vaccination_dates" do
+    alias Pets.Companions.VaccinationDate
+
+    import Pets.CompanionsFixtures
+
+    @invalid_attrs %{immunization_date: nil, status: nil, veterinarian: nil}
+
+    test "list_vaccination_dates/0 returns all vaccination_dates" do
+      vaccination_date = vaccination_date_fixture()
+      assert Companions.list_vaccination_dates() == [vaccination_date]
+    end
+
+    test "get_vaccination_date!/1 returns the vaccination_date with given id" do
+      vaccination_date = vaccination_date_fixture()
+      assert Companions.get_vaccination_date!(vaccination_date.id) == vaccination_date
+    end
+
+    test "create_vaccination_date/1 with valid data creates a vaccination_date" do
+      valid_attrs = %{immunization_date: ~D[2022-09-11], status: "some status", veterinarian: "some veterinarian"}
+
+      assert {:ok, %VaccinationDate{} = vaccination_date} = Companions.create_vaccination_date(valid_attrs)
+      assert vaccination_date.immunization_date == ~D[2022-09-11]
+      assert vaccination_date.status == "some status"
+      assert vaccination_date.veterinarian == "some veterinarian"
+    end
+
+    test "create_vaccination_date/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Companions.create_vaccination_date(@invalid_attrs)
+    end
+
+    test "update_vaccination_date/2 with valid data updates the vaccination_date" do
+      vaccination_date = vaccination_date_fixture()
+      update_attrs = %{immunization_date: ~D[2022-09-12], status: "some updated status", veterinarian: "some updated veterinarian"}
+
+      assert {:ok, %VaccinationDate{} = vaccination_date} = Companions.update_vaccination_date(vaccination_date, update_attrs)
+      assert vaccination_date.immunization_date == ~D[2022-09-12]
+      assert vaccination_date.status == "some updated status"
+      assert vaccination_date.veterinarian == "some updated veterinarian"
+    end
+
+    test "update_vaccination_date/2 with invalid data returns error changeset" do
+      vaccination_date = vaccination_date_fixture()
+      assert {:error, %Ecto.Changeset{}} = Companions.update_vaccination_date(vaccination_date, @invalid_attrs)
+      assert vaccination_date == Companions.get_vaccination_date!(vaccination_date.id)
+    end
+
+    test "delete_vaccination_date/1 deletes the vaccination_date" do
+      vaccination_date = vaccination_date_fixture()
+      assert {:ok, %VaccinationDate{}} = Companions.delete_vaccination_date(vaccination_date)
+      assert_raise Ecto.NoResultsError, fn -> Companions.get_vaccination_date!(vaccination_date.id) end
+    end
+
+    test "change_vaccination_date/1 returns a vaccination_date changeset" do
+      vaccination_date = vaccination_date_fixture()
+      assert %Ecto.Changeset{} = Companions.change_vaccination_date(vaccination_date)
+    end
+  end
 end

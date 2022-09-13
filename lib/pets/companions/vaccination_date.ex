@@ -1,19 +1,19 @@
-defmodule Pets.Companions.Vaccine.VaccinationDate do
+defmodule Pets.Companions.VaccinationDate do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Pets.Companions.Vaccine.VaccinationDate
-
-  @derive {Jason.Encoder, only: [:immunization_date, :veterinarian, :status]}
-  embedded_schema do
+  schema "vaccination_dates" do
     field :immunization_date, :date
-    field :veterinarian, :string
     field :status, Ecto.Enum, values: [:applied, :pending, :rejected]
+    field :veterinarian, :string
+
+    timestamps()
   end
 
-  def changeset(%VaccinationDate{} = vaccination_date, attrs \\ %{}) do
+  @doc false
+  def changeset(vaccination_date, attrs) do
     vaccination_date
     |> cast(attrs, [:immunization_date, :veterinarian, :status])
-    |> validate_required([:immunization_date, :status])
+    |> validate_required([:immunization_date, :veterinarian, :status])
   end
 end

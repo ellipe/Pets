@@ -52,4 +52,20 @@ defmodule Pets.CompanionsFixtures do
 
     medication
   end
+
+  @doc """
+  Generate a vaccination_date.
+  """
+  def vaccination_date_fixture(attrs \\ %{}) do
+    {:ok, vaccination_date} =
+      attrs
+      |> Enum.into(%{
+        immunization_date: ~D[2022-09-11],
+        status: "some status",
+        veterinarian: "some veterinarian"
+      })
+      |> Pets.Companions.create_vaccination_date()
+
+    vaccination_date
+  end
 end

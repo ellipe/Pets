@@ -14,7 +14,7 @@ defmodule PetsWeb.VaccineView do
     %{
       id: vaccine.id,
       name: vaccine.name,
-      vaccination_dates: vaccine.vaccination_dates
+      status: vaccine.status,
     }
   end
 end

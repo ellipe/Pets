@@ -293,4 +293,100 @@ defmodule Pets.Companions do
   def change_medication(%Medication{} = medication, attrs \\ %{}) do
     Medication.changeset(medication, attrs)
   end
+
+  alias Pets.Companions.VaccinationDate
+
+  @doc """
+  Returns the list of vaccination_dates.
+
+  ## Examples
+
+      iex> list_vaccination_dates()
+      [%VaccinationDate{}, ...]
+
+  """
+  def list_vaccination_dates do
+    Repo.all(VaccinationDate)
+  end
+
+  @doc """
+  Gets a single vaccination_date.
+
+  Raises `Ecto.NoResultsError` if the Vaccination date does not exist.
+
+  ## Examples
+
+      iex> get_vaccination_date!(123)
+      %VaccinationDate{}
+
+      iex> get_vaccination_date!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_vaccination_date!(id), do: Repo.get!(VaccinationDate, id)
+
+  @doc """
+  Creates a vaccination_date.
+
+  ## Examples
+
+      iex> create_vaccination_date(%{field: value})
+      {:ok, %VaccinationDate{}}
+
+      iex> create_vaccination_date(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_vaccination_date(attrs \\ %{}) do
+    %VaccinationDate{}
+    |> VaccinationDate.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a vaccination_date.
+
+  ## Examples
+
+      iex> update_vaccination_date(vaccination_date, %{field: new_value})
+      {:ok, %VaccinationDate{}}
+
+      iex> update_vaccination_date(vaccination_date, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_vaccination_date(%VaccinationDate{} = vaccination_date, attrs) do
+    vaccination_date
+    |> VaccinationDate.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a vaccination_date.
+
+  ## Examples
+
+      iex> delete_vaccination_date(vaccination_date)
+      {:ok, %VaccinationDate{}}
+
+      iex> delete_vaccination_date(vaccination_date)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_vaccination_date(%VaccinationDate{} = vaccination_date) do
+    Repo.delete(vaccination_date)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking vaccination_date changes.
+
+  ## Examples
+
+      iex> change_vaccination_date(vaccination_date)
+      %Ecto.Changeset{data: %VaccinationDate{}}
+
+  """
+  def change_vaccination_date(%VaccinationDate{} = vaccination_date, attrs \\ %{}) do
+    VaccinationDate.changeset(vaccination_date, attrs)
+  end
 end

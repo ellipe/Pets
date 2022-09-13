@@ -4,7 +4,7 @@ defmodule Pets.Repo.Migrations.CreateVaccines do
   def change do
     create table(:vaccines) do
       add :name, :string
-      add :vaccination_dates, :map
+      add :status, :string, default: "enabled"
 
       timestamps()
     end
