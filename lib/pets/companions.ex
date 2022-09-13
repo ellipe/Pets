@@ -131,7 +131,7 @@ defmodule Pets.Companions do
       ** (Ecto.NoResultsError)
 
   """
-  def get_vaccine!(id), do: Repo.get!(Vaccine, id)
+  def get_vaccine!(id), do: Repo.get!(Vaccine, id) |> Repo.preload(:vaccination_dates)
 
   @doc """
   Creates a vaccine.
