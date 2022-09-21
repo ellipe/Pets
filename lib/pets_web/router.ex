@@ -15,13 +15,6 @@ defmodule PetsWeb.Router do
     post "/users/signin", UserController, :signin
   end
 
-  scope "/auth", PetsWeb do
-    pipe_through :api
-
-    get "/:provider", AuthController, :request
-    get "/:provider/callback", AuthController, :callback
-  end
-
   # Enables LiveDashboard only for development
   #
   # If you want to use the LiveDashboard in production, you should put

@@ -46,9 +46,7 @@ defmodule Pets.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:guardian, "~> 1.0"},
       {:comeonin, "~> 4.0"},
-      {:bcrypt_elixir, "~> 1.0"},
-      {:ueberauth, "~> 0.7"},
-      {:ueberauth_github, "~> 0.7"}
+      {:bcrypt_elixir, "~> 1.0"}
     ]
   end
 
