@@ -14,8 +14,8 @@ defmodule PetsWeb.PetController do
     render(conn, "index.json", pets: pets)
   end
 
-  def create(conn, %{"pet" => pet_params}) do
-    with {:ok, %Pet{} = pet} <- Companions.create_pet(pet_params) do
+  def create(%{assigns: %{ user: user}} = conn, %{"pet" => pet_params}) do
+    with {:ok, %Pet{} = pet} <- Companions.create_pet(user, pet_params) do
       conn
       |> put_status(:created)
       |> put_resp_header("location", Routes.pet_path(conn, :show, pet))

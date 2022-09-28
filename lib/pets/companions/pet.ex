@@ -21,4 +21,11 @@ defmodule Pets.Companions.Pet do
     |> cast(attrs, [:name, :breed, :birthdate, :gender])
     |> validate_required([:name, :breed, :birthdate, :gender])
   end
+
+  def assoc(struct \\ %User{}) do
+    # this is super weird pattern...
+    # basically from here I'm saying, create a new changeset of type Pets using the linked record, in this case the user.
+    # %User{...} |> Ecto.build_assoc(:pets) returns a changeset like %Pet{user_id: XXX} that can be used in the changeset method created above.
+    struct |> Ecto.build_assoc(:pets)
+  end
 end

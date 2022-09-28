@@ -7,6 +7,7 @@ defmodule Pets.Companions do
   alias Pets.Repo
 
   alias Pets.Companions.Pet
+  alias Pets.Accounts.User
 
   @doc """
   Returns the list of pets.
@@ -49,8 +50,9 @@ defmodule Pets.Companions do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_pet(attrs \\ %{}) do
-    %Pet{}
+  def create_pet(struct \\ %User{}, attrs \\ %{}) do
+    struct
+    |> Pet.assoc
     |> Pet.changeset(attrs)
     |> Repo.insert()
   end
