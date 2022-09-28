@@ -3,6 +3,8 @@ defmodule PetsWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug :fetch_session # remember to drop this when using cookies.
+    plug(PetsWeb.Plugs.UserSession)
   end
 
   scope "/api", PetsWeb do
@@ -11,8 +13,8 @@ defmodule PetsWeb.Router do
     resources "/pets", PetController, except: [:new, :edit]
     resources "/vaccines", VaccineController, except: [:new, :edit]
     resources "/medications", MedicationController, except: [:new, :edit]
-    post "/users/signup", UserController, :create
-    post "/users/signin", UserController, :signin
+    post "/signin", AuthController, :signin
+    post "/signout", AuthController, :signout
   end
 
   # Enables LiveDashboard only for development
