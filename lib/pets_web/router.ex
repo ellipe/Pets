@@ -14,7 +14,7 @@ defmodule PetsWeb.Router do
     resources "/vaccines", VaccineController, except: [:new, :edit]
     resources "/medications", MedicationController, except: [:new, :edit]
     post "/signin", AuthController, :signin
-    post "/signout", AuthController, :signout
+    delete "/signout", AuthController, :signout
   end
 
   # Enables LiveDashboard only for development
