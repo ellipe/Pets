@@ -6,6 +6,9 @@ defmodule PetsWeb.VaccinationDateController do
 
   action_fallback PetsWeb.FallbackController
 
+  alias PetsWeb.Plugs.RequireAuth
+  plug RequireAuth
+
   def index(conn, _params) do
     vaccination_dates = Companions.list_vaccination_dates()
     render(conn, "index.json", vaccination_dates: vaccination_dates)

@@ -4,6 +4,9 @@ defmodule PetsWeb.VaccineController do
   alias Pets.Companions
   alias Pets.Companions.Vaccine
 
+  alias PetsWeb.Plugs.RequireAuth
+  plug RequireAuth
+
   action_fallback PetsWeb.FallbackController
 
   def index(conn, _params) do

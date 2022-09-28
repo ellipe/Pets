@@ -6,6 +6,9 @@ defmodule PetsWeb.PetController do
 
   action_fallback PetsWeb.FallbackController
 
+  alias PetsWeb.Plugs.RequireAuth
+  plug RequireAuth
+
   def index(conn, _params) do
     pets = Companions.list_pets()
     render(conn, "index.json", pets: pets)

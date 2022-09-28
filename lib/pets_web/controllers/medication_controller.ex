@@ -6,6 +6,10 @@ defmodule PetsWeb.MedicationController do
 
   action_fallback PetsWeb.FallbackController
 
+
+  alias PetsWeb.Plugs.RequireAuth
+  plug RequireAuth
+
   def index(conn, _params) do
     medications = Companions.list_medications()
     render(conn, "index.json", medications: medications)
