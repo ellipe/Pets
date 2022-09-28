@@ -11,6 +11,7 @@ defmodule PetsWeb.Plugs.RequireAuth do
     else
       conn
       |> send_resp(:unauthorized, "")
+      |> halt()
     end
   end
 end
