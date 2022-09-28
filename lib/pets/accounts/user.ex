@@ -6,6 +6,8 @@ defmodule Pets.Accounts.User do
     field :email, :string
     field :password, :string
 
+    has_many :pets, Pets.Companions.Pet
+
     timestamps()
   end
 

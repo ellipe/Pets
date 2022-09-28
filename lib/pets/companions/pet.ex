@@ -2,11 +2,15 @@ defmodule Pets.Companions.Pet do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Pets.Accounts.User
+
   schema "pets" do
     field :birthdate, :date
     field :breed, :string
     field :gender, Ecto.Enum, values: [:Female, :Male]
     field :name, :string
+
+    belongs_to :user, User
 
     timestamps()
   end
