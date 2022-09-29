@@ -8,6 +8,7 @@ defmodule PetsWeb.PetController do
 
   alias PetsWeb.Plugs.RequireAuth
   plug RequireAuth
+  plug :check_ownership when action in [:edit, :update, :delete]
 
   def index(conn, _params) do
     pets = Companions.list_pets()
@@ -41,6 +42,17 @@ defmodule PetsWeb.PetController do
 
     with {:ok, %Pet{}} <- Companions.delete_pet(pet) do
       send_resp(conn, :no_content, "")
+    end
+  end
+
+  defp check_ownership(%{:params => %{"id" => id}} = conn, _params) do
+    # different _params when is used as a plug
+    if Companions.get_pet!(id).user_id == conn.assigns.user.id do
+      conn
+    else
+      conn
+      |> send_resp(:forbidden, "")
+      |> halt()
     end
   end
 end
